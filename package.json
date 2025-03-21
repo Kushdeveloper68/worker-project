@@ -1,0 +1,31 @@
+{
+  "name": "worker-project",
+  "version": "1.0.0",
+  "description": "**Our Worker Manager** is a web-based application designed for businesses to manage worker details, track payments, and organize labor records. This platform is perfect for managers or employers who need a reliable and easy-to-use system to keep track of workers' names, salaries, overtime pay, and payment schedules.",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon run ./backend/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kushdeveloper68/worker-project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kushdeveloper68/worker-project/issues"
+  },
+  "homepage": "https://github.com/Kushdeveloper68/worker-project#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "http": "^0.0.1-security",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.9.5",
+    "nodemon": "^3.1.9",
+    "pg": "^8.13.1"
+  }
+}
