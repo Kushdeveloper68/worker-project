@@ -34,8 +34,8 @@ body {
 }
 .image-div {
   width:100%;
-  height:100%;
-  background-image:url(./file-Bkqm6UkkvU6o4VUnaQinft.webp);
+  height:100vh;
+  background-image:url(../assets/file-Bkqm6UkkvU6o4VUnaQinft.webp);
     background-repeat:no-repeat;
     background-origin:center;
     background-size:cover;
@@ -423,7 +423,7 @@ border-radius:20px;
   justify-content:center;
   align-items:center;
   padding:70px 0;
-  background-image:url(./268543.jpg);
+  background-image:url(../assets/268543.jpg);
   background-repeat:no-repeat;
   background-origin:center;
   background-size:cover;

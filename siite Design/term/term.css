@@ -1,0 +1,92 @@
+
+
+ /* General Styles */
+ body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Container */
+.container {
+    max-width: 800px;
+    margin: auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Title */
+h1 {
+    text-align: center;
+    color: #007bff;
+}
+
+/* Last Updated */
+.updated {
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+}
+
+/* Section Styling */
+.terms {
+    margin-top: 20px;
+}
+
+/* Collapsible Section */
+.term-section {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+}
+
+.toggle-btn {
+    width: 100%;
+    text-align: left;
+    background: #007bff;
+    color: #fff;
+    border: none;
+    padding: 12px;
+    font-size: 18px;
+    cursor: pointer;
+    outline: none;
+    transition: background 0.3s ease;
+    border-radius: 5px;
+}
+
+.toggle-btn:hover {
+    background: #0056b3;
+}
+
+.content {
+    display: none;
+    padding: 15px;
+    background: #f1f1f1;
+    border-left: 4px solid #007bff;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+/* Link Styling */
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+
