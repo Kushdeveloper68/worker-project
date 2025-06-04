@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>OUR WORKER MANAGER - CHECK</title>
-  <link rel="stylesheet" href="./Add.css">
+  <link rel="stylesheet" href="Add.css">
 </head>
 <body>
 
-  <form action="/add-workers" method="POST" class="add-form">
+  <form action="/add" method="POST" class="add-form">
     <div>
       <h1>Add Workers</h1>
 
@@ -21,7 +21,7 @@
         <!-- First Worker (Index 0) -->
         <div class="worker-group">
           <label>Worker Name:</label>
-          <input type="text" name="workers[0][name]" placeholder="Name" required><br>
+          <input type="text" name="workers[0][email]" placeholder="Name" required><br>
 
           <label>Salary:</label>
           <input type="number" name="workers[0][salary]" placeholder="Salary" required><br>
@@ -37,6 +37,32 @@
     </div>
   </form>
 
-  <script src="./add.js"></script>
+  <script >
+    
+let workerIndex = 1; // Already have index 0 in HTML
+const addBtn = document.querySelector('.add-btn');
+const workersContainer = document.getElementById('workers-container');
+
+addBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+
+  const workerDiv = document.createElement('div');
+  workerDiv.classList.add('worker-group');
+  workerDiv.innerHTML = `
+    <hr>
+    <label>Worker Name:</label>
+    <input type="text" name="workers[${workerIndex}][email]" placeholder="Name" required><br>
+
+    <label>Salary:</label>
+    <input type="number" name="workers[${workerIndex}][salary]" placeholder="Salary" required><br>
+
+    <label>Extra Details:</label>
+    <textarea name="workers[${workerIndex}][extra]" placeholder="Extra details (optional)"></textarea>
+  `;
+
+  workersContainer.appendChild(workerDiv);
+  workerIndex++;
+});
+  </script>
 </body>
 </html>

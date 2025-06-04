@@ -1,30 +1,36 @@
 const express = require('express')
 const app = express()
-const http = require('http')
+const cors = require("cors")
 const bodyPraser = require('body-parser')
-const cors = require('cors');
+const cookiesP = require('cookie-parser');
 const path = require('path')
+const {router} = require("./routes/getroute")
+const {postRouter} = require("./routes/postroute")
+const { mongodbConnection } = require('./connection')
+
 require('dotenv').config()
 const port = process.env.PORT || 5000
-const { mongodbConnection } = require('./connection')
-const { router } = require('./routes/getroute')
-const  {postRouter} = require('./routes/postroute');
 
-// frontend request cors 
-app.use(cors());
 // connection
-mongodbConnection('mongodb://localhost:27017/')
+mongodbConnection(process.env.mongoUrl || "mongodb://localhost:27017/workermanager")
   .then(() => console.log('mongodb conneted'))
   .catch(err => console.log('kush mongo err'))
+//routers 
 // body parser
-app.use(bodyPraser.json());
-app.use(express.json());
+app.use(bodyPraser.json())
+app.use(express.json())
 app.use(bodyPraser.urlencoded({ extended: true }))
 app.use(express.urlencoded({ extended: true }))
-// set up static files
-app.use(express.static(path.join(__dirname, 'public')))
-app.use(postRouter)
+app.use(cookiesP())
+app.use(cors())
+app.use(express.static(path.join(__dirname, './views')))
+
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, './views/'));
+// router middleware 
 app.use(router)
+app.use(postRouter)
+// set up static files
 app.listen(port, () =>
   console.log('> Server is up and running on port : ' + port)
 )

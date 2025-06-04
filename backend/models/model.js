@@ -1,17 +1,51 @@
-const mongoose = require('mongoose')
-const Schema = mongoose.Schema
+const mongoose = require("mongoose");
+const schema = mongoose.Schema;
 
-const loginForm = new Schema({
-    username: {
-        type: String,
-        required: true
+const signup = new schema({
+    username:{
+        type:String, 
+        required:true
     },
-    password: {
-        type: String,
-        required: true
+    password:{
+        type:String, 
+        required:true
+    },
+    email:{
+        type:String, 
+        required:true,
+        unique:true 
+    } , 
+    agree: {
+        type:String,
+        default:false
+    }
+});
+
+const add = new schema({
+    email:{
+        type:String, 
+        required:true,
+    } , 
+    date:{
+        type:String, 
+        required:true 
+    },
+    workername:{
+        type:String, 
+        required:true
+    },
+    salary:{
+        type:Number, 
+        required:true
+    },
+    extra:{
+        type:String, 
+        required:false
     }
 })
-const loginform = mongoose.model("login information", loginForm);
+const addmodel = mongoose.model("added data of worker", add);
+const signupmodel = mongoose.model("sign up data", signup);
 module.exports = {
-    loginform
+    signupmodel,
+    addmodel
 }

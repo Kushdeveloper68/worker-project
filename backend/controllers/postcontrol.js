@@ -1,16 +1,137 @@
-async function  loginRoute(req , res) {
-    console.log(req.body );
-    const {username ,password} = await req.body;
+const { signupmodel, addmodel } = require('../models/model')
+const bcrypt = require('bcryptjs')
+const jwt = require("jsonwebtoken")
+const key = process.env.SECRETJSONKEY || "kush123";
 
-    if(username == undefined , password == undefined) {
-        res.send("enter youur username password");
-    } else {
-         loginform.create({
-            username, password
-         })
-       res.send("user create");
+// post for sigup form hit
+async function signup(req, res) {
+   
+
+    try {
+        const { username, password, email , agree} = await req.body
+        if (!username || !password || !email) {
+            console.log(req.body)
+            return res.send('please enter form properly')
+        }
+        // Check if user with email already exists
+        const existingUser = await signupmodel.findOne({ email })
+        if (existingUser) {
+            return res.status(400).json({ message: 'Email already registered' })
+        }
+
+        const hashedPassword = await bcrypt.hash(password, process.env.round || 10)
+
+        const user = await signupmodel.create({
+            username,
+            password: hashedPassword,
+            email,
+            agree
+        })
+
+        if (!user) return res.send('email is aleady available');
+
+  const token = jwt.sign({email , password}, key  , {expiresIn:"7d"})
+
+  res.cookie('authtoken', token , {httpOnly: true, maxAge: 7 * 24 * 60 * 60 * 1000});
+
+        res.redirect("/")
+    } catch (err) {
+        console.log(err)
+        res.send('server error')
     }
 }
-module.exports = { 
-    loginRoute
+
+async function login(req, res) {
+    try {
+        const { email, password } = await req.body
+        if (!email || !password) {
+            console.log(req.body)
+            return res.send('please enter form properly')
+        }
+        const user = await signupmodel.findOne({ email })
+        if (!user) {
+            return res.send('Invalid username')
+        }
+        const isMatch = await bcrypt.compare(password, user.password)
+        if (isMatch) {
+            
+            const token = jwt.sign({email , password}, key  , {expiresIn:"7d"})
+  res.cookie('authtoken', token , {httpOnly: true, maxAge: 7 * 24 * 60 * 60 * 1000});
+            return res.redirect('/')
+        } else {
+            return res.send('Invalid password')
+        }
+    } catch (error) {
+        res.send('server error')
+        console.log('error')
+    }
+}
+
+async function check(req, res) {
+    try {
+        const { email, password, date } = await req.body
+        if (!email || !password || !date) {
+            console.log(req.body)
+            return res.send('please enter form properly')
+        }
+
+        const user = await signupmodel.findOne({ email })
+        if (!user) {
+            return res.send('Invalid username')
+        }
+        const isMatch = await bcrypt.compare(password, user.password)
+        if (isMatch) {
+             const worker = await addmodel.find({ email , date })
+             console.log(worker)
+            if (worker.length > 0) {
+                return res.json(worker)
+            } else {
+                return res.send('there are not any worker on that specific date')
+            }
+        } else {
+            return res.send('Invalid password')
+        }
+    } catch (error) {
+        res.send('server error')
+        console.log('error' , error)
+    }
+}
+
+
+async function add(req, res) {
+    const { date, workers } = await req.body;
+    const {email} = req.user
+    if(!email) return res.send("invaild token")
+  if (!workers || !Array.isArray(workers) && typeof workers !== 'object') {
+    return res.status(400).send('Invalid data');
+  }
+
+  const workerArray = await Array.isArray(workers)
+    ? workers
+    : Object.values(workers); // handle object-like submission
+
+  try {
+    // Save each worker
+    for (const worker of workerArray) {
+      await addmodel.create({
+        email,
+        workername: worker.email,
+        salary: worker.salary,
+        extra: worker.extra,
+        date: date
+      });
+    }
+
+    res.send("Workers added successfully!");
+} catch (err) {
+    console.log(err)
+    res.send('server error')
+}
+}
+
+module.exports = {
+    signup,
+    add,
+    login,
+    check
 }
