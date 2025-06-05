@@ -1,4 +1,4 @@
-const { signupmodel, addmodel } = require('../models/model')
+const { signupmodel, addmodel , feedbackmodel} = require('../models/model')
 const bcrypt = require('bcryptjs')
 const jwt = require("jsonwebtoken")
 const key = process.env.SECRETJSONKEY || "kush123";
@@ -10,7 +10,7 @@ async function signup(req, res) {
     try {
         const { username, password, email , agree} = await req.body
         if (!username || !password || !email) {
-            console.log(req.body)
+          
             return res.send('please enter form properly')
         }
         // Check if user with email already exists
@@ -36,7 +36,7 @@ async function signup(req, res) {
 
         res.redirect("/")
     } catch (err) {
-        console.log(err)
+        console.log('ERROR IS COMING FROM LOGIN CONTROL' , err)
         res.send('server error')
     }
 }
@@ -45,7 +45,7 @@ async function login(req, res) {
     try {
         const { email, password } = await req.body
         if (!email || !password) {
-            console.log(req.body)
+    
             return res.send('please enter form properly')
         }
         const user = await signupmodel.findOne({ email })
@@ -62,8 +62,8 @@ async function login(req, res) {
             return res.send('Invalid password')
         }
     } catch (error) {
+        console.log('ERROR IS COMING FROM LOGIN CONTROL' , error)
         res.send('server error')
-        console.log('error')
     }
 }
 
@@ -82,7 +82,7 @@ async function check(req, res) {
         const isMatch = await bcrypt.compare(password, user.password)
         if (isMatch) {
              const worker = await addmodel.find({ email , date })
-             console.log(worker)
+             
             if (worker.length > 0) {
                 return res.json(worker)
             } else {
@@ -92,8 +92,8 @@ async function check(req, res) {
             return res.send('Invalid password')
         }
     } catch (error) {
+        console.log('ERROR IS COMING FROM  CHECK CONTROL' , error)
         res.send('server error')
-        console.log('error' , error)
     }
 }
 
@@ -124,14 +124,31 @@ async function add(req, res) {
 
     res.send("Workers added successfully!");
 } catch (err) {
-    console.log(err)
+    console.log('ERROR IS COMING FROM ADD CONTROL', err)
     res.send('server error')
 }
+}
+async function feedback(req, res) {
+  let {name, contact, message} = req.body;
+ try {
+   
+  if(!name ||!contact || !message ) return res.send('please enter form properly');
+  
+   await feedbackmodel.create({
+    name,
+    contact, 
+    message
+  });
+  res.send('feedback submitted 😊')
+ } catch (error) {
+   console.log('ERROR IS COMING FROM FEEDBACK CONTROL', error);
+ }
 }
 
 module.exports = {
     signup,
     add,
     login,
-    check
+    check,
+    feedback
 }

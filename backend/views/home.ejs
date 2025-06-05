@@ -193,19 +193,20 @@
      <div class="feedback-main-div">
         <div class="light-form">
             <div class="light-form__title">Feedback form</div>
-            <form action="">
+            <form action="/feedback" method="post">
               <div class="light-form__wrap">
                 <div class="light-form__group">
-                  <input class="light-form__control light-form__control--text" type="text" required/>
+                  <input name="name" class="light-form__control light-form__control--text" type="text" required/>
                   <label class="light-form__label">You name:</label>
                 </div>
                 <div class="light-form__group">
-                  <input class="light-form__control light-form__control--text" type="text" required/>
+                  <input name="contact" class="light-form__control light-form__control--text" type="text" required/>
                   <label class="light-form__label">Phone no. or Email:</label>
                 </div>
               </div>
               <div class="light-form__wrap">
-                <textarea class="light-form__control light-form__control--textarea"></textarea>
+                <textarea name="message" class="light-form__control
+                light-form__control--textarea" required></textarea>
                 <label class="light-form__label">Message:</label>
               </div>
               <div class="light-form__wrap--center">

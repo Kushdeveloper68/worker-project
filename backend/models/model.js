@@ -43,9 +43,27 @@ const add = new schema({
         required:false
     }
 })
-const addmodel = mongoose.model("added data of worker", add);
-const signupmodel = mongoose.model("sign up data", signup);
+
+const feedback = new schema({
+  name:{
+    type:String,
+    required:true
+  } ,
+  contact:{
+    type:String,
+    required:true
+  },
+  message:{
+    type:String,
+    required:true
+  }
+})
+
+const feedbackmodel = mongoose.model("feedback",feedback);
+const addmodel = mongoose.model("workerList", add);
+const signupmodel = mongoose.model("userSignupList", signup);
 module.exports = {
     signupmodel,
-    addmodel
+    addmodel,
+    feedbackmodel
 }
