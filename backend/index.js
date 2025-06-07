@@ -1,4 +1,3 @@
-//com.termux.documents/tree/%2Fdata%2Fdata%2Fcom.termux%2Ffiles%2Fhome%2Fworker-project::/data/data/com.termux/files/home/worker-project/backend/index.jsconst express = require('express')
 const express = require("express")
 const app = express()
 const cors = require("cors")
