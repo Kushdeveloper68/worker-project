@@ -1,0 +1,105 @@
+│   .gitignore
+│   package-lock.json
+│   package.json
+│   README.md
+│   structure.txt
+│
+├───backend
+│   │   .env
+│   │   connection.js
+│   │   index.js
+│   │   
+│   ├───authentication
+│   │       auth.js
+│   │
+│   ├───controllers
+│   │       getcontrol.js
+│   │       postcontrol.js
+│   │
+│   ├───middleware
+│   │       tokenmiddleware.js
+│   │       
+│   ├───models
+│   │       model.js
+│   │
+│   ├───routes
+│   │       getroute.js
+│   │       postroute.js
+│   │
+│   └───views
+│           Add.css
+│           add.ejs
+│           check.css
+│           check.ejs
+│           design.css
+│           design.js
+│           home.ejs
+│           login.css
+│           login.ejs
+│           signin.css
+│           signup.ejs
+│           term.css
+│           term.ejs
+│
+├───siite Design
+│   ├───add
+│   │       Add.css
+│   │       add.html
+│   │       add.js
+│   │       
+│   ├───assets
+│   │       268543.jpg
+│   │       file-Bkqm6UkkvU6o4VUnaQinft.webp
+│   │       file-CWCBFNd5FVURFpSrTd1giD.webp
+│   │       file-D4Y3ajFa2RitztTtX7k7V9.webp
+│   │       file-E3AcE61UNn2iyCaUqHDCPg.webp
+│   │       file-QudAYSasqPtavBJ3sKHwr9.webp
+│   │       
+│   ├───check
+│   │       check.css
+│   │       check.html
+│   │       check.js
+│   │
+│   ├───home
+│   │       design.css
+│   │       design.html
+│   │       design.js
+│   │       
+│   ├───login
+│   │       login.css
+│   │       login.html
+│   │       login.js
+│   │       
+│   ├───signin
+│   │       signin.css
+│   │       signin.html
+│   │       signin.js
+│   │
+│   └───term
+│           term.css
+│           term.html
+│           term.js
+│
+└───vite-project
+    │   .gitignore
+    │   eslint.config.js
+    │   index.html
+    │   package-lock.json
+    │   package.json
+    │   README.md
+    │   vite.config.js
+    │
+    ├───public
+    └───src
+        │   App.css
+        │   App.jsx
+        │   index.css
+        │   main.jsx
+        │
+        ├───assets
+        └───frontend
+                add.jsx
+                check.jsx
+                home.jsx
+                login.jsx
+                signup.jsx
