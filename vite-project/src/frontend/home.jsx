@@ -1,7 +1,16 @@
-import React from "react";
+import React, { useEffect, useState } from 'react';
+import axios from "axios"
 import "../App.css"; // Make sure this file exists in your project (e.g., src/assets or src folder)
 
 const Home = () => {
+   const [data, setData] = useState('');
+     
+      useEffect(() => {
+      axios.get('http://localhost:5000/')
+        .then(response => setData(response.data.user))
+        .catch(error => console.error('Error fetching data:', error));
+     }, []);
+     
   return (
     <>
       <div className="image-div"></div>
@@ -29,7 +38,7 @@ const Home = () => {
         </div>
 
         <div className="nav-header" id="navHeader">
-          <h1>OUR WORKER MANAGER</h1>
+          <h1>{data}</h1>
         </div>
 
         <div className="nav-logo-div">

@@ -1,8 +1,17 @@
-import React from "react";
-import "../App.css"; // Make sure login.css is in the correct folder (e.g., src/styles/login.css)
-
-const Login = () => {
+import React, { useEffect, useState } from 'react';
+import "../App.css";
+import axios from "axios"
+const Login =  () => {
+   const [data, setData] = useState('');
+   
+    useEffect(() => {
+    axios.get('http://localhost:5000/login')
+      .then(response => setData(response.data.message))
+      .catch(error => console.error('Error fetching data:', error));
+   }, []);
+   console.log(data)
   return (
+    
     <div className="login-page">
       <div className="background">
         <div className="shape"></div>
@@ -10,7 +19,7 @@ const Login = () => {
       </div>
 
       <form className="login-form">
-        <h3>Login Here</h3>
+        <h3>{data}</h3>
 
         <label htmlFor="username">Username</label>
         <input type="text" placeholder="Email or username" id="username" />
@@ -30,6 +39,7 @@ const Login = () => {
         </div>
       </form>
     </div>
+
   );
 };
 

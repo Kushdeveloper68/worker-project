@@ -3,7 +3,9 @@ const bcrypt = require("bcryptjs");
 const {signupmodel}= require("../models/model")
 async function homePage(req , res ) {
     try {
-        res.render("home")
+        res.json({
+            message: "Welcome to the home page",
+        })
     } catch (error) {
        return res.send("internal server error")
     }
@@ -20,7 +22,9 @@ async function  signupPage(req , res ) {
 async function loginPage(req , res ) {
     try {
         
-        res.render("login")
+        res.json({
+            message: "Welcome to the login page",
+        })
     } catch (error) {
        return res.send("internal server error")
     }
