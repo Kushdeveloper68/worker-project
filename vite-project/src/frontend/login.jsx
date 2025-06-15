@@ -9,7 +9,7 @@ const Login =  () => {
       .then(response => setData(response.data.message))
       .catch(error => console.error('Error fetching data:', error));
    }, []);
-   console.log(data)
+    
   return (
     
     <div className="login-page">

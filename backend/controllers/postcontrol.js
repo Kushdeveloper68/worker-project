@@ -2,13 +2,15 @@ const { signupmodel, addmodel , feedbackmodel} = require('../models/model')
 const bcrypt = require('bcryptjs')
 const jwt = require("jsonwebtoken")
 const key = process.env.SECRETJSONKEY || "kush123";
-
+const multer = require('multer');
 // post for sigup form hit
 async function signup(req, res) {
-   
 
     try {
         const { username, password, email , agree} = await req.body
+        const file = req.file
+        console.log(req.body)
+        console.log(file)
         if (!username || !password || !email) {
           
             return res.send('please enter form properly')
@@ -18,7 +20,8 @@ async function signup(req, res) {
         if (existingUser) {
             return res.status(400).json({ message: 'Email already registered' })
         }
-
+        
+        // Check if user with username already exists
         const hashedPassword = await bcrypt.hash(password, process.env.round || 10)
 
         const user = await signupmodel.create({

@@ -18,9 +18,7 @@ mongodbConnection(process.env.mongoUrl || "mongodb://localhost:27017/workermanag
 //routers 
 // body parser
 app.use(bodyPraser.json())
-app.use(express.json())
 app.use(bodyPraser.urlencoded({ extended: true }))
-app.use(express.urlencoded({ extended: true }))
 app.use(cookiesP())
 app.use(cors())
 app.use(express.static(path.join(__dirname, './views')))

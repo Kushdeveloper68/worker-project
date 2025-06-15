@@ -7,9 +7,10 @@
     <link rel="stylesheet" href="signin.css">
 </head>
 <body>
-    <form action="/signup" method="post">
+    <form action="/signup" method="post" enctype="multipart/form-data">
         <div class="login">
           <h2>Sign in  </h2>
+          <input type="file" name="image" id="image">
           <input name="username" placeholder="Username" type="text">
           <input id="pw" name="password" placeholder="Password" type="password">
           <input name="email" placeholder="E-Mail Address" type="text">
