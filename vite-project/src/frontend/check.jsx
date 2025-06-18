@@ -1,5 +1,5 @@
 import React from "react";
-import "../App.css"; // Make sure this path matches your folder structure
+import "../style/check.css"// Make sure this path matches your folder structure
 
 const Check = () => {
   return (

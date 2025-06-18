@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from "axios"
-import "../App.css"; // Make sure this file exists in your project (e.g., src/assets or src folder)
-
+import "../style/design.css"
 const Home = () => {
    const [data, setData] = useState('');
-     
+    // Fetch data from the backend
       useEffect(() => {
       axios.get('http://localhost:5000/')
         .then(response => setData(response.data.user))
@@ -48,6 +47,7 @@ const Home = () => {
 
       <header>
         <div className="header-main-div">
+       
           <div className="header-div">
             <h1>
               <span> WORKER MANAGER</span> - SIMPLIFY WORKERFORCE MANAGEMENT

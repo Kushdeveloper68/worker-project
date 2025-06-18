@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../App.css";
+import "../style/Add.css";
 
 const AddWorkers = () => {
   const [date, setDate] = useState("");

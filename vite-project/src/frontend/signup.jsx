@@ -1,6 +1,5 @@
 import React from "react";
-import "../App.css"; 
-
+import "../style/signin.css"
 const Signup = () => {
   return (
     <div className="signup-page">
