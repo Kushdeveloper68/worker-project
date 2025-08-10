@@ -1,20 +1,16 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Login from "./frontend/login.jsx";
-import Signup from "./frontend/signup.jsx";
-import HomePage from "./frontend/home.jsx"
-import AddWorkers from "./frontend/add.jsx";
-import CheckPage from "./frontend/check.jsx";
+import {Landingpage, Signuppage , Loginpage, Dashboard, Add} from "./frontend";
 
 const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/add" element={<AddWorkers />} />
-        <Route path="/check" element={<CheckPage />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/" element={<Landingpage />} />
+        <Route path="/signup" element={<Signuppage />} />
+        <Route path="/login" element={<Loginpage />} />
+        <Route path="/add" element={<Add />} />
       </Routes>
     </Router>
   );

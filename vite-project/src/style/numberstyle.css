@@ -1,0 +1,22 @@
+
+.stat-card {
+    background: #1e293b;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    transition: transform 0.3s, background 0.3s;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    background: #334155;
+}
+
+.stat-card h2 {
+    font-size: 2rem;
+    margin: 0;
+}
+
+.total-workers { border-top: 4px solid #3b82f6; }
+.active-workers { border-top: 4px solid #22c55e; }
+.inactive-workers { border-top: 4px solid #ef4444; }

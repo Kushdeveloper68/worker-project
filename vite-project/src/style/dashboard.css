@@ -1,0 +1,186 @@
+/* Global Styles */
+.dashboard {
+    font-family: 'Segoe UI', sans-serif;
+    background: #0f172a;
+    color: #f8fafc;
+    margin: 0;
+    padding: 20px;
+}
+
+.main-dashboard {
+    max-width: 1100px;
+    margin: auto;
+}
+
+/* Profile Section */
+.profile-section {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.profile-image img {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    border: 3px solid #3b82f6;
+    transition: transform 0.3s ease;
+}
+
+.profile-image img:hover {
+    transform: scale(1.05);
+}
+
+.profile-details .profile-name {
+    font-size: 1.6rem;
+    margin: 0;
+}
+
+.profile-details .profile-role {
+    color: #93c5fd;
+}
+
+.profile-details .profile-joined {
+    font-size: 0.9rem;
+    color: #94a3b8;
+}
+
+/* Stats Section */
+.worker-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+/* Recent Activity */
+.section-title {
+    margin-bottom: 10px;
+    font-size: 1.3rem;
+    color: #f1f5f9;
+}
+
+.activity-list {
+    list-style: none;
+    padding: 0;
+}
+
+.activity-list li {
+    background: #1e293b;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.3s;
+}
+
+.activity-list li:hover {
+    background: #334155;
+}
+
+.activity-list span {
+    font-size: 0.8rem;
+    color: #94a3b8;
+}
+
+/* Buttons */
+.quick-actions {
+    margin: 25px 0;
+    display: flex;
+    gap: 10px;
+}
+
+.btn-primary {
+    background: #3b82f6;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    color: white;
+    font-weight: 500;
+    transition: background 0.3s;
+}
+
+.btn-primary:hover {
+    background: #2563eb;
+}
+
+.btn-secondary {
+    background: #475569;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    color: white;
+    font-weight: 500;
+    transition: background 0.3s;
+}
+
+.btn-secondary:hover {
+    background: #334155;
+}
+
+/* Worker Table */
+.table-wrapper {
+    overflow-x: auto;
+}
+
+.worker-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #1e293b;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.worker-table th,
+.worker-table td {
+    padding: 14px;
+    text-align: left;
+}
+
+.worker-table thead {
+    background: #334155;
+}
+
+.worker-table tr:nth-child(even) {
+    background: #273449;
+}
+
+.status-active {
+    background: #22c55e;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 4px;
+}
+
+.status-inactive {
+    background: #ef4444;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 4px;
+}
+
+.btn-link {
+    background: none;
+    border: none;
+    color: #3b82f6;
+    cursor: pointer;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.btn-link:hover {
+    color: #2563eb;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .profile-section {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

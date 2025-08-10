@@ -1,0 +1,179 @@
+/* <footer>
+            <div className="footer-content">
+                <p>© 2025 Developer Kush. All rights reserved.</p>
+                <ul className="social-links">
+                    <li><a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a></li>
+                    <li><a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer">Twitter</a></li>
+                    <li><a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+                </ul>
+            </div>
+            <div className="footer-links">
+                <ul>
+                    <li><a href="/privacy-policy">Privacy Policy</a></li>
+                    <li><a href="/terms-of-service">Terms of Service</a></li>
+                    <li><a href="/contact-us">Contact Us</a></li>
+                </ul>
+            </div>
+            <div className="footer-logo">
+                <img src="/logo.png" alt="Company Logo" />  
+            </div>
+        </footer> */
+
+footer {
+  background: radial-gradient(circle at 20% 80%, #1e293b 0%, #0f172a 100%);
+  color: #f3f4f6;
+  padding: 56px 0 32px 0;
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  width: 100%;
+  box-shadow: 0 -4px 32px rgba(30,41,59,0.18);
+  position: relative;
+  overflow: hidden;
+}
+
+footer::before {
+  content: "";
+  position: absolute;
+  left: -80px;
+  bottom: -80px;
+  width: 320px;
+  height: 320px;
+  background: linear-gradient(135deg, #38bdf8 0%, #6366f1 100%);
+  opacity: 0.13;
+  border-radius: 50%;
+  z-index: 0;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 32px;
+  position: relative;
+  z-index: 1;
+}
+
+.footer-content p {
+  margin: 0 0 18px 0;
+  font-size: 1.18rem;
+  letter-spacing: 0.7px;
+  font-weight: 600;
+  background: linear-gradient(90deg, #38bdf8 0%, #6366f1 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.social-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.social-links a {
+  color: #f3f4f6;
+  background: linear-gradient(90deg, #6366f1 0%, #38bdf8 100%);
+  border-radius: 50px;
+  padding: 10px 22px;
+  font-size: 1.15rem;
+  font-weight: 500;
+  text-decoration: none;
+  box-shadow: 0 2px 12px rgba(56,189,248,0.09);
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+
+.social-links a::after {
+  content: "";
+  position: absolute;
+  left: 0; top: 0; right: 0; bottom: 0;
+  background: linear-gradient(90deg, #f472b6 0%, #38bdf8 100%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: -1;
+  border-radius: 50px;
+}
+
+.social-links a:hover {
+  color: #fff;
+  background: linear-gradient(90deg, #f472b6 0%, #38bdf8 100%);
+  box-shadow: 0 6px 24px rgba(236,72,153,0.13);
+  transform: scale(1.08);
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 28px;
+  position: relative;
+  z-index: 1;
+}
+
+.footer-links ul {
+  display: flex;
+  gap: 44px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links a {
+  color: #f3f4f6;
+  text-decoration: none;
+  font-size: 1.08rem;
+  font-weight: 500;
+  padding-bottom: 3px;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s, border-bottom 0.2s;
+  letter-spacing: 0.2px;
+  position: relative;
+}
+
+.footer-links a:hover {
+  color: #38bdf8;
+  border-bottom: 2px solid #38bdf8;
+}
+
+.footer-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 18px;
+  position: relative;
+  z-index: 1;
+}
+
+.footer-logo img {
+  height: 54px;
+  width: auto;
+  filter: drop-shadow(0 4px 16px rgba(56,189,248,0.13));
+  transition: transform 0.3s, filter 0.3s;
+  border-radius: 16px;
+  background: rgba(99,102,241,0.08);
+  padding: 6px 16px;
+}
+
+.footer-logo img:hover {
+  transform: scale(1.13) rotate(-2deg);
+  filter: drop-shadow(0 8px 32px rgba(236,72,153,0.18));
+  background: rgba(236,72,153,0.13);
+}
+
+@media (max-width: 700px) {
+  .footer-content,
+  .footer-links ul {
+    flex-direction: column;
+    gap: 18px;
+    text-align: center;
+  }
+  .footer-logo img {
+    height: 38px;
+    padding: 4px 8px;
+  }
+  footer {
+    padding: 32px 0 16px 0;
+  }
+}
