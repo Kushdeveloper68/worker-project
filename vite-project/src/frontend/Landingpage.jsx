@@ -4,13 +4,12 @@ import {Navbar , Footer , Number} from "../../components"
 export default function Landingpage() {
   return (
     <>
-     <Navbar/>
     <section className="hero">
     <div className="hero-content">
       <h1>Streamline Your Workforce Management</h1>
       <p>Efficiently manage your team with our comprehensive platform. Track performance, schedule shifts, and communicate seamlessly.</p>
       <div className="hero-buttons">
-        <button className="btn btn-primary">Sign Up</button>
+        <button className="btn btn-primary"> Sign Up</button>
         <button className="btn btn-outline">Log In</button>
       </div>
     </div>
@@ -41,7 +40,6 @@ export default function Landingpage() {
     <p>Sign up today and experience the difference.</p>
     <button className="btn btn-primary">Get Started</button>
   </section>
-     <Footer/>
     </>
   )
 }

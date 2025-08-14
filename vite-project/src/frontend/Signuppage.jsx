@@ -3,7 +3,6 @@ import "../style/signuppage.css"
 import {Navbar , Footer} from "../../components"
 function Signuppage() {
   return (  <>
-   <Navbar/>
   <div className='signup-div'>
    <div className="signup-container">
     <form className="signup-form">
@@ -27,7 +26,6 @@ function Signuppage() {
     </form>
   </div>
   </div>
-  <Footer/>
 </>
   )
 }

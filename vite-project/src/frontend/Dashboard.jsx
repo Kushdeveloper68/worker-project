@@ -4,7 +4,6 @@ import {Navbar , Footer, Number} from "../../components"
 function Dashboard() {
   return (
     <>
-    <Navbar/>
     <div className="dashboard">
 
     <main className="main-dashboard">
@@ -92,7 +91,6 @@ function Dashboard() {
     </main>
 
 </div>
-<Footer/>
 </>
   )
 }

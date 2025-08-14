@@ -4,7 +4,6 @@ import {Navbar , Footer} from "../../components"
 function Add() {
   return (
     <>
-    <Navbar />
     <div className='add-worker'>
   <main className="worker-form-container">
     <section className="worker-form-card">
@@ -41,7 +40,6 @@ function Add() {
     </section>
   </main>
 </div>
-<Footer />
 </>
   )
 }

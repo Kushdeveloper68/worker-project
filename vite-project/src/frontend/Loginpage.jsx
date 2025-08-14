@@ -4,7 +4,6 @@ import {Navbar , Footer} from "../../components"
 function Loginpage() {
   return (
     <>
-      <Navbar />
       <div className="login-div">
       <div className="login-container">
     <form className="login-form">
@@ -28,7 +27,6 @@ function Loginpage() {
     </form>
   </div>
   </div>
-  <Footer />
    </>
   )
 }

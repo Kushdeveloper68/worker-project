@@ -6,9 +6,9 @@ function Navbar() {
     setIsOpen(!isOpen);
     const navLinks = document.querySelector('.nav-links');
     if (isOpen) {
-        navLinks.style.translate = "-350px 0px";
+        navLinks.style.translate = "400px 0px";
     } else {
-        navLinks.style.translate = '350px 0px';
+        navLinks.style.translate = '-400px 0px';
     }
  }
   return (
