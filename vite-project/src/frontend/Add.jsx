@@ -1,7 +1,14 @@
 import React from 'react'
+import { Navigate } from 'react-router-dom'
 import "../style/addpage.css"
 import {Navbar , Footer} from "../../components"
 function Add() {
+   const user = JSON.parse(localStorage.getItem('user'))
+    const token = localStorage.getItem('token')
+    if (!user || !token) {
+      return <Navigate to='/signup' />
+
+    }
   return (
     <>
     <div className='add-worker'>
@@ -9,7 +16,7 @@ function Add() {
     <section className="worker-form-card">
       <h1 className="worker-form-title">Add New Worker</h1>
 
-      <form className="worker-form" action="#" method="POST">
+      <form className="worker-form">
         <div className="form-group">
           <label for="name">Name</label>
           <input type="text" id="name" name="name" placeholder="Enter worker's name" required />

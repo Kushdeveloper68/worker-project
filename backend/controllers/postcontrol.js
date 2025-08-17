@@ -7,7 +7,6 @@ const multer = require('multer')
 async function signup (req, res) {
   try {
     const { username, password, email, agree } = await req.body
-    console.log(req.body)
     if (!username || !password || !email) {
       return res.json({ message: 'Please enter form properly' })
     }
@@ -17,7 +16,6 @@ async function signup (req, res) {
       return res.json({ message: 'Email already registered' })
     }
 
-    // Check if user with username already exists
     const hashedPassword = await bcrypt.hash(password, process.env.round || 10)
 
     const user = await signupmodel.create({
@@ -31,10 +29,10 @@ async function signup (req, res) {
 
     const token = jwt.sign({ email, password }, key, { expiresIn: '7d' })
 
-    res.cookie('authtoken', token, {
-      httpOnly: true,
-      maxAge: 7 * 24 * 60 * 60 * 1000
-    })
+    // res.cookie('authtoken', token, {
+    //   httpOnly: true,
+    //   maxAge: 7 * 24 * 60 * 60 * 1000
+    // })
 
     res.json({
       success: true,
@@ -59,22 +57,30 @@ async function login (req, res) {
     }
     const user = await signupmodel.findOne({ email })
     if (!user) {
-      return res.send('Invalid username')
+      return res.json({ message: 'Invalid email' })
     }
     const isMatch = await bcrypt.compare(password, user.password)
     if (isMatch) {
       const token = jwt.sign({ email, password }, key, { expiresIn: '7d' })
-      res.cookie('authtoken', token, {
-        httpOnly: true,
-        maxAge: 7 * 24 * 60 * 60 * 1000
+      // res.cookie('authtoken', token, {
+      //   httpOnly: true,
+      //   maxAge: 7 * 24 * 60 * 60 * 1000
+      // })
+      return res.json({
+        success: true,
+        message: 'Login successful!',
+        user: {
+          username: user.username,
+          email: user.email
+        },
+        token
       })
-      return res.redirect('/')
     } else {
-      return res.send('Invalid password')
+      return res.json({ message: 'Invalid password' })
     }
   } catch (error) {
     console.log('ERROR IS COMING FROM LOGIN CONTROL', error)
-    res.send('server error')
+    res.json({ message: 'server error' })
   }
 }
 

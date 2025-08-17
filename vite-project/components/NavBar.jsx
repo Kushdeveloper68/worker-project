@@ -1,7 +1,9 @@
 import  "../src/style/navstyle.css";
+import { useLocation, Navigate ,Link, NavLink } from 'react-router-dom'
 import {useState} from "react"
 function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
+      const location = useLocation();
  const handleMenuClick = () => {
     setIsOpen(!isOpen);
     const navLinks = document.querySelector('.nav-links');
@@ -20,10 +22,16 @@ function Navbar() {
         <button className="nav-menu-btn" onClick={handleMenuClick} >|||</button>
         <div className="nav-links">
             <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/about">About</a></li>
-                <li><a href="/contact">Contact</a></li>
-                <li><a href="/services">Services</a></li>
+                <li><NavLink to="/add">Add Worker</NavLink></li>
+                <li><NavLink to="/check">Check Worker</NavLink></li>
+                <li><NavLink to="/term">Terms & Conditions</NavLink></li>
+                <li><button onClick={() => {
+                    localStorage.removeItem('user');
+                    localStorage.removeItem('token');
+                    sessionStorage.removeItem('user');
+                    sessionStorage.removeItem('token');
+                    window.location.href = '/signup';
+                }}>Logout</button></li>
             </ul>
         </div>
        </nav>
