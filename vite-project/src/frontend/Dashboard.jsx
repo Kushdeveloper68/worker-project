@@ -1,7 +1,13 @@
 import React from 'react'
+import { useLocation } from "react-router-dom";
 import "../style/dashboard.css"
 import {Navbar , Footer, Number} from "../../components"
 function Dashboard() {
+const location = useLocation();
+    const user = location.state?.user || JSON.parse(localStorage.getItem('user'));
+  const token = location.state?.token || localStorage.getItem('token');
+      console.log(user, token);
+
   return (
     <>
     <div className="dashboard">

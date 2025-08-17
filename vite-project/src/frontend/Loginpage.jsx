@@ -8,7 +8,7 @@ function Loginpage() {
       <div className="login-container">
     <form className="login-form">
       <h2>Welcome Back</h2>
-
+     {/* <h1 className='alerth1'>{ data.message || message}</h1> */}
       <label for="username">Username</label>
       <input type="text" id="username" placeholder="Enter your username" required/>
 

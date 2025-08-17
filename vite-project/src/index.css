@@ -1,0 +1,19 @@
+.alerth1 {
+    width:auto;
+    height:40px;
+    font-size:20px;
+    padding:10px;
+    text-align: center;
+    margin: 0 auto;
+    background-color: #e80a1c;
+    border-radius: 5px;
+    color: antiquewhite;
+    display: block;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight:300;
+    align-content: center;
+}
+
+.alert-success {
+   display:none;
+}
