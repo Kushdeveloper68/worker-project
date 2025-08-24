@@ -1,6 +1,7 @@
 import React from 'react'
 import "../style/landingpage.css"
 import {Navbar , Footer , Number} from "../../components"
+import {Link , NavLink} from "react-router-dom"
 export default function Landingpage() {
   return (
     <>
@@ -9,8 +10,8 @@ export default function Landingpage() {
       <h1>Streamline Your Workforce Management</h1>
       <p>Efficiently manage your team with our comprehensive platform. Track performance, schedule shifts, and communicate seamlessly.</p>
       <div className="hero-buttons">
-        <button className="btn btn-primary"> Sign Up</button>
-        <button className="btn btn-outline">Log In</button>
+       <Link to="/signup"> <button className="btn btn-primary">Sign Up</button></Link>
+        <Link to="/login"><button className="btn btn-outline">Log In</button></Link>
       </div>
     </div>
   </section>

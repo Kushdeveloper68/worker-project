@@ -1,15 +1,20 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useLocation, Navigate } from 'react-router-dom'
 import '../style/dashboard.css'
-import { Navbar, Footer, Number } from '../../components'
+import { Navbar, Footer, Number, Workershow } from '../../components'
+import { axios } from 'axios'
 function Dashboard () {
+  const [workers, setWorkers] = useState({})
   const location = useLocation()
   const user = JSON.parse(localStorage.getItem('user'))
   const token = localStorage.getItem('token')
   if (!user || !token) {
     return <Navigate to='/signup' />
   }
+   useEffect( async () => {
+  const workers = await axios.get("http://localhost/dashboard")
 
+})
   return (
     <>
       <div className='dashboard'>
@@ -29,7 +34,7 @@ function Dashboard () {
             <Number />
             <Number />
           </section>
-
+           
           <section className='recent-activity'>
             <h2 className='section-title'>Recent Activity</h2>
             <ul className='activity-list'>
@@ -55,68 +60,7 @@ function Dashboard () {
           <section className='worker-table-section'>
             <h2 className='section-title'>Your Workers</h2>
             <div className='table-wrapper'>
-              <table className='worker-table'>
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>Status</th>
-                    <th>Department</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Owen Carter</td>
-                    <td>
-                      <span className='status-active'>Active</span>
-                    </td>
-                    <td>Engineering</td>
-                    <td>
-                      <button className='btn-link'>View</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Sophia Davis</td>
-                    <td>
-                      <span className='status-active'>Active</span>
-                    </td>
-                    <td>Marketing</td>
-                    <td>
-                      <button className='btn-link'>View</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Lucas Harper</td>
-                    <td>
-                      <span className='status-inactive'>Inactive</span>
-                    </td>
-                    <td>Sales</td>
-                    <td>
-                      <button className='btn-link'>View</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Chloe Bennett</td>
-                    <td>
-                      <span className='status-active'>Active</span>
-                    </td>
-                    <td>HR</td>
-                    <td>
-                      <button className='btn-link'>View</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Ryan Foster</td>
-                    <td>
-                      <span className='status-inactive'>Inactive</span>
-                    </td>
-                    <td>Operations</td>
-                    <td>
-                      <button className='btn-link'>View</button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+              <Workershow />
             </div>
           </section>
         </main>

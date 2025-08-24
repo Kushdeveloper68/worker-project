@@ -13,15 +13,20 @@ function Navbar() {
         navLinks.style.translate = '-400px 0px';
     }
  }
-  return (
-    <>
-       <nav>
-        <div className="logo-div">
-            <img src="/vite.svg" alt="logo" className="logo" />
-        </div>
-        <button className="nav-menu-btn" onClick={handleMenuClick} >|||</button>
-        <div className="nav-links">
-            <ul>
+ const handleElement = () => {
+    switch (location.pathname) {
+        case "/":
+            return (
+                <>
+                <li><NavLink to="/signup">Sign up</NavLink></li>
+                <li><NavLink to="/login">Sign in</NavLink></li>
+                <li><NavLink to="/term">Terms & Conditions</NavLink></li>
+                </>
+            )
+            break;
+         case "/dashboard":
+            return (
+                <>
                 <li><NavLink to="/add">Add Worker</NavLink></li>
                 <li><NavLink to="/check">Check Worker</NavLink></li>
                 <li><NavLink to="/term">Terms & Conditions</NavLink></li>
@@ -32,6 +37,68 @@ function Navbar() {
                     sessionStorage.removeItem('token');
                     window.location.href = '/signup';
                 }}>Logout</button></li>
+                
+                </>
+            )
+            break;
+            case "/signup":
+            return (
+                <>
+                <li><NavLink to="/">Home</NavLink></li>
+                <li><NavLink to="/login">Sign in</NavLink></li>
+                <li><NavLink to="/term">Terms & Conditions</NavLink></li>
+                </>
+            )
+            break;
+            case "/login":
+            return (
+                <>
+                <li><NavLink to="/">Home</NavLink></li>
+                <li><NavLink to="/signup">Sign up</NavLink></li>
+                <li><NavLink to="/term">Terms & Conditions</NavLink></li>
+                </>
+            )
+            break;
+            case "/add":
+            return (
+                <>
+                <li><NavLink to="/dashboard">Dashboard</NavLink></li>
+                <li><NavLink to="/check">Check worker</NavLink></li>
+                <li><NavLink to="/term">Terms & Conditions</NavLink></li>
+                </>
+            )
+            break;
+            case "/add":
+            return (
+                <>
+                <li><NavLink to="/dashboard">Dashboard</NavLink></li>
+                <li><NavLink to="/add">Add worker</NavLink></li>
+                <li><NavLink to="/term">Terms & Conditions</NavLink></li>
+                </>
+            )
+            break;
+        default:
+            return (
+                <>
+                <li><NavLink to="/">Home</NavLink></li>
+                <li><NavLink to="/signup">Sign up</NavLink></li>
+                <li><NavLink to="/login">Sign in</NavLink></li>
+                <li><NavLink to="/term">Terms & Conditions</NavLink></li>
+                </>
+            )
+            break;
+    }
+ }
+  return (
+    <>
+       <nav>
+        <div className="logo-div">
+            <img src="/vite.svg" alt="logo" className="logo" />
+        </div>
+        <button className="nav-menu-btn" onClick={handleMenuClick} >|||</button>
+        <div className="nav-links">
+            <ul>
+                {handleElement()}
             </ul>
         </div>
        </nav>

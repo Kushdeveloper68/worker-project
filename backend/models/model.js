@@ -38,7 +38,7 @@ const add = new schema({
         type:Number, 
         required:true
     },
-    extra:{
+    role:{
         type:String, 
         required:false
     }

@@ -115,33 +115,39 @@ async function check (req, res) {
 }
 
 async function add (req, res) {
-  const { date, workers } = await req.body
-  const { email } = req.user
-  if (!email) return res.send('invaild token')
+  const { email, workers } =  req.body
+  console.log(req.body)
+  if (!email) return res.json({message:'Invaild token'})
+
   if (!workers || (!Array.isArray(workers) && typeof workers !== 'object')) {
-    return res.status(400).send('Invalid data')
+    return res.json({message:'Invalid data'})
   }
 
-  const workerArray = (await Array.isArray(workers))
-    ? workers
-    : Object.values(workers) // handle object-like submission
+ // handle object-like submission
 
   try {
+    
+    const { email, workers } = req.body;
+  if (!email) return res.json({message:'Invaild token'})
+    
+    if (!workers || (!Array.isArray(workers) && typeof workers !== 'object')) {
+      return res.json({message:'Invalid data'})
+    }
     // Save each worker
-    for (const worker of workerArray) {
+    for (const worker of workers) {
       await addmodel.create({
         email,
-        workername: worker.email,
+        workername: worker.name,
         salary: worker.salary,
-        extra: worker.extra,
-        date: date
-      })
+        date: worker.hireDate,
+        role: worker.role
+      });
     }
 
-    res.send('Workers added successfully!')
+    res.json({alert:'Workers added successfully!'})
   } catch (err) {
     console.log('ERROR IS COMING FROM ADD CONTROL', err)
-    res.send('server error')
+    res.json({message:'server error'})
   }
 }
 async function feedback (req, res) {

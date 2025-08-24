@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-import { Navigate, useNavigate, useLocation } from 'react-router-dom'
+import { Navigate, useNavigate, useLocation, Link } from 'react-router-dom'
 import '../style/loginpage.css'
-import { Navbar, Footer } from '../../components'
 function Loginpage () {
   const user = JSON.parse(localStorage.getItem('user'))
   const token = localStorage.getItem('token')
@@ -79,7 +78,7 @@ function Loginpage () {
             </p>
 
             <p className='links'>
-              Don't have an account? <a href='#'>Sign up</a>
+              Don't have an account? <Link to='/signup'>Sign up</Link>
             </p>
           </form>
         </div>
