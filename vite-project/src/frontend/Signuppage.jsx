@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-import { Navigate, useNavigate, useLocation , Link} from 'react-router-dom'
+import { Navigate, useNavigate, useLocation, Link } from 'react-router-dom'
 import '../style/signuppage.css'
 function Signuppage () {
   const [data, setdata] = useState({})
@@ -10,17 +10,17 @@ function Signuppage () {
   const [comformedPassword, setComformedPassword] = useState('')
   const navigate = useNavigate()
   const location = useLocation()
+
+  const user = location.state?.user || JSON.parse(localStorage.getItem('user'))
+  const token = location.state?.token || localStorage.getItem('token')
+
+  if (user && token) {
+    navigate('/dashboard', { state: { user, token } })
+    return
+  }
   const submitHandler = async e => {
     e.preventDefault()
     try {
-      const user =
-        location.state?.user || JSON.parse(localStorage.getItem('user'))
-      const token = location.state?.token || localStorage.getItem('token')
-
-      if (user && token) {
-        navigate('/dashboard', { state: { user, token } })
-        return
-      }
       const response = await axios.post('http://localhost:5000/signup', {
         username,
         email,
@@ -96,7 +96,7 @@ function Signuppage () {
             </button>
 
             <p className='login-text'>
-              Already have an account?<Link to="/login">Log in</Link>
+              Already have an account?<Link to='/login'>Log in</Link>
             </p>
           </form>
         </div>

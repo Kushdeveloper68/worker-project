@@ -39,7 +39,8 @@ async function signup (req, res) {
       message: 'Signup successful!',
       user: {
         username: user.username,
-        email: user.email
+        email: user.email,
+        createdAt: user.createdAt
       },
       token
     })
@@ -71,7 +72,8 @@ async function login (req, res) {
         message: 'Login successful!',
         user: {
           username: user.username,
-          email: user.email
+          email: user.email,
+          createdAt: user.createdAt
         },
         token
       })

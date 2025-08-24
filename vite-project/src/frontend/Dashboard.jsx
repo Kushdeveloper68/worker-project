@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useLocation, Navigate } from 'react-router-dom'
 import '../style/dashboard.css'
 import { Navbar, Footer, Number, Workershow } from '../../components'
-import { axios } from 'axios'
+import axios from 'axios'
 function Dashboard () {
   const [workers, setWorkers] = useState({})
   const location = useLocation()
@@ -11,10 +11,17 @@ function Dashboard () {
   if (!user || !token) {
     return <Navigate to='/signup' />
   }
-   useEffect( async () => {
-  const workers = await axios.get("http://localhost/dashboard")
-
-})
+   useEffect( () => {
+    const handleWorker = async () => {
+      const response = await axios.get("http://localhost:5000/", {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+      setWorkers(response.data)
+    }
+    handleWorker()
+  }, [])
   return (
     <>
       <div className='dashboard'>
@@ -26,7 +33,7 @@ function Dashboard () {
             <div className='profile-details'>
               <h1 className='profile-name'>{user.username}</h1>
               <p className='profile-role'>Administrator</p>
-              <p className='profile-joined'>Joined 2 years ago</p>
+              <p className='profile-joined'>{user.createdAt}</p>
             </div>
           </section>
           <section className='worker-stats'>
@@ -60,7 +67,19 @@ function Dashboard () {
           <section className='worker-table-section'>
             <h2 className='section-title'>Your Workers</h2>
             <div className='table-wrapper'>
-              <Workershow />
+              {workers.workers && workers.workers.length > 0 ? (
+                workers.workers.map((worker, index) => (
+                  <Workershow
+                    key={index}
+                    name={worker.workername}
+                    date={worker.date}
+                    role={worker.role}
+                    salary={worker.salary}
+                  />
+                ))
+              ) : (
+                <p>No workers found. Please add some workers.</p>
+              )}
             </div>
           </section>
         </main>

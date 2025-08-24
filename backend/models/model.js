@@ -19,7 +19,7 @@ const signup = new schema({
         type:String,
         default:false
     }
-});
+},{timestamps:true});
 
 const add = new schema({
     email:{
@@ -42,7 +42,7 @@ const add = new schema({
         type:String, 
         required:false
     }
-})
+},{timestamps:true})
 
 const feedback = new schema({
   name:{
@@ -56,12 +56,11 @@ const feedback = new schema({
   message:{
     type:String,
     required:true
-  }
-})
+  }},{timestamps:true})
 
-const feedbackmodel = mongoose.model("feedback",feedback);
-const addmodel = mongoose.model("workerList", add);
-const signupmodel = mongoose.model("userSignupList", signup);
+const feedbackmodel = mongoose.model("Feedback",feedback);
+const addmodel = mongoose.model("Worker", add);
+const signupmodel = mongoose.model("User", signup);
 module.exports = {
     signupmodel,
     addmodel,
