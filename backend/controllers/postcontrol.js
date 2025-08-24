@@ -1,22 +1,77 @@
 const { signupmodel, addmodel, feedbackmodel } = require('../models/model')
 const bcrypt = require('bcryptjs')
+const nodemailer = require('nodemailer');
 const jwt = require('jsonwebtoken')
 const key = process.env.SECRETJSONKEY || 'kush123'
 const multer = require('multer')
 // post for sigup form hit
+
+// In-memory store for OTPs (use Redis or DB for production)
+const otpStore = {};
+
+// Send OTP
+async function sendOtp(req, res) {
+  const { email } = req.body;
+  if (!email) return res.json({ message: "Email required" });
+  console.log(email)
+  console.log(process.env.EMAIL, process.env.PASS)
+  // Generate OTP
+  const otp = Math.floor(100000 + Math.random() * 900000).toString();
+  // Save OTP for verification (expires in 5 min)
+  otpStore[email] = { otp, expires: Date.now() + 5 * 60 * 1000 };
+  // Send email
+  try {
+    const transporter = nodemailer.createTransport({
+      host: "smtp.gmail.com",
+      port: 587,
+  secure: false,
+      auth: {
+        user: process.env.EMAIL, // your gmail
+        pass: process.env.PASS  // your app password
+      }
+    });
+
+    await transporter.sendMail({
+      from: `"Worker Manager" <${process.env.EMAIL}>`,
+      to: email,
+      subject: "Your OTP Code",
+      text: `Your OTP code is: ${otp}`,
+      html: `<h2>Your OTP code is: <b>${otp}</b></h2>`
+    });
+console.log("OTP sent to email");
+    res.json({ success: true, message: "OTP sent to email" });
+  } catch (err) {
+    console.log("OTP email error", err);
+    res.json({ message: "Failed to send OTP" });
+  }
+}
+
+
+// Verify OTP
+
 async function signup (req, res) {
   try {
-    const { username, password, email, agree } = await req.body
+    const { username, password, email, agree, otp } = await req.body
+    console.log(email, otp)
     if (!username || !password || !email) {
       return res.json({ message: 'Please enter form properly' })
     }
     // Check if user with email already exists
-    const existingUser = await signupmodel.findOne({ email })
+ const existingUser = await signupmodel.findOne({ email })
     if (existingUser) {
       return res.json({ message: 'Email already registered' })
     }
 
-    const hashedPassword = await bcrypt.hash(password, process.env.round || 10)
+    if (!email || !otp) return res.json({ message: "Email and OTP required" });
+
+  const record = otpStore[email];
+  if (!record) return res.json({ message: "OTP not found" });
+  if (Date.now() > record.expires) return res.json({ message: "OTP expired" });
+  if (record.otp !== otp) return res.json({ message: "Invalid OTP" });
+  // OTP verified, remove from store
+  delete otpStore[email];
+
+    const hashedPassword = await bcrypt.hash(password, Number(process.env.round || 10))
 
     const user = await signupmodel.create({
       username,
@@ -174,5 +229,6 @@ module.exports = {
   add,
   login,
   check,
-  feedback
+  feedback,
+  sendOtp
 }

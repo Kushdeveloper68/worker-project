@@ -1,8 +1,9 @@
 const express = require("express");
 const postRouter = express.Router()
 const {tokenmiddleware} = require("../middleware/tokenmiddleware")
-const {signup, add, login, check, feedback} = require("../controllers/postcontrol")
+const {signup, add, login, check, feedback, sendOtp} = require("../controllers/postcontrol")
 
+postRouter.post('/send-otp', sendOtp )
 postRouter.post('/signup', signup )
 postRouter.post('/add',tokenmiddleware, add )
 postRouter.post('/login', login )

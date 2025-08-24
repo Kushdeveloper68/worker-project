@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Navigate, useNavigate, useLocation, Link } from 'react-router-dom'
 import '../style/signuppage.css'
 function Signuppage () {
   const [data, setdata] = useState({})
+  const [otp, setotp] = useState("")
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -13,11 +14,24 @@ function Signuppage () {
 
   const user = location.state?.user || JSON.parse(localStorage.getItem('user'))
   const token = location.state?.token || localStorage.getItem('token')
-
+useEffect(() => {
   if (user && token) {
     navigate('/dashboard', { state: { user, token } })
     return
   }
+}, [user, token])
+
+  const sendOtpHandler = async () => {
+    try {
+      const response = await axios.post('http://localhost:5000/send-otp', {
+        email
+      })
+      setdata(response.data)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   const submitHandler = async e => {
     e.preventDefault()
     try {
@@ -25,7 +39,8 @@ function Signuppage () {
         username,
         email,
         password,
-        comformedPassword
+        comformedPassword,
+        otp
       })
       setdata(response.data)
       if (response.data.success) {
@@ -90,7 +105,18 @@ function Signuppage () {
               placeholder='Confirm your password'
               required
             />
-
+            <label htmlFor='otp'>OTP</label>
+            <input
+              value={otp}
+              onChange={e => setotp(e.target.value)}
+              type='text'
+              id='otp'
+              placeholder='Enter OTP'
+              required
+            />
+            <button type='button' onClick={sendOtpHandler} className='btn'>
+              Send OTP
+            </button>
             <button type='submit' className='btn'>
               Sign Up
             </button>

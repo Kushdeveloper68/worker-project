@@ -8,8 +8,8 @@ const {router} = require("./routes/getroute")
 const {postRouter} = require("./routes/postroute")
 const { mongodbConnection } = require('./connection')
 
-require('dotenv').config()
-const port = process.env.PORT || 5000
+require('dotenv').config({path:__dirname + "/.env"})
+const port = process.env.port || 5000
 
 // connection
 mongodbConnection(process.env.mongoUrl || "mongodb://localhost:27017/workermanager")
