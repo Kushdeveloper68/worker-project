@@ -11,7 +11,6 @@ async function homePage(req , res ) {
               });
           }
           const workers = await addmodel.find({email})
-          console.log(workers)
           res.json({
               success:true,
               workers

@@ -1,104 +1,127 @@
-/* General Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
+/* Full page background */
 .add-worker {
-  font-family: "Segoe UI", sans-serif;
-  background-color: #0d1117;
-  color: #f0f6fc;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0a0f1c, #111827);
   display: flex;
   justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  padding: 20px;
+  padding: 40px 20px;
+  font-family: "Inter", sans-serif;
 }
 
-/* Form Container */
+/* Form container */
 .worker-form-container {
   width: 100%;
-  max-width: 600px;
+  max-width: 800px;
 }
 
+/* Glassmorphism form card */
 .worker-form-card {
-  background-color: #161b22;
-  padding: 2rem;
-  border-radius: 14px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-  animation: fadeIn 0.6s ease-in-out;
+  background: rgba(30, 41, 59, 0.85);
+  backdrop-filter: blur(16px);
+  border-radius: 18px;
+  padding: 40px 36px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+  animation: fadeUp 0.8s ease forwards;
+  color: #f1f5f9;
+}
+@keyframes fadeUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }
 
+/* Form title */
 .worker-form-title {
-  font-size: 1.8rem;
-  margin-bottom: 1.5rem;
-  font-weight: bold;
-  color: #58a6ff;
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 24px;
+  font-weight: 700;
+  text-shadow: 0 0 8px rgba(139,92,246,0.6);
 }
 
-/* Form Styling */
-.worker-form .form-group {
-  margin-bottom: 1.2rem;
-}
-
-.worker-form label {
-  display: block;
-  margin-bottom: 0.4rem;
-  font-size: 0.95rem;
+/* Alerts */
+.alerth1 {
+  text-align: center;
+  color: #f87171;
   font-weight: 500;
-  color: #c9d1d9;
+  margin-bottom: 16px;
+}
+.alert-success {
+  text-align: center;
+  color: #34d399;
+  font-weight: 500;
+  margin-bottom: 16px;
 }
 
-.worker-form input {
+/* Worker block */
+.worker-form-block {
+  margin-bottom: 24px;
+}
+.worker-form-block h3 {
+  margin-bottom: 12px;
+  color: #e0e7ff;
+}
+
+/* Form groups and inputs */
+.form-group {
+  margin-bottom: 16px;
+}
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+.form-group input {
   width: 100%;
-  padding: 0.75rem;
-  background-color: #21262d;
-  border: 1px solid #30363d;
-  border-radius: 8px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.15);
+  background: #1f2937;
+  color: #f1f5f9;
   font-size: 0.95rem;
-  color: #f0f6fc;
+  transition: all 0.3s ease;
+}
+.form-group input:focus {
+  border-color: #8b5cf6;
+  box-shadow: 0 0 12px rgba(139,92,246,0.5);
   outline: none;
-  transition: border 0.2s ease, background 0.2s ease;
-}
-
-.worker-form input:focus {
-  border-color: #58a6ff;
-  background-color: #1f6feb33;
-}
-
-/* Submit Button */
-.btn-submit {
-  width: 100%;
-  padding: 0.85rem;
-  background: linear-gradient(135deg, #238636, #2ea043);
-  color: #fff;
-  font-size: 1rem;
-  font-weight: 600;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.btn-submit:hover {
   transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(34,197,94,0.4);
 }
 
-/* Animations */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+/* Horizontal line between workers */
+.worker-form-block hr {
+  border: 0;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  margin: 20px 0;
+}
+
+/* Buttons */
+.btn-add-more, .btn-submit {
+  width: 100%;
+  padding: 14px 0;
+  border-radius: 12px;
+  border: none;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-bottom: 16px;
+  color: #fff;
+  background: linear-gradient(135deg, #6366f1, #06b6d4, #ec4899);
+  background-size: 200% 100%;
+  transition: all 0.4s ease;
+}
+.btn-add-more:hover, .btn-submit:hover {
+  background-position: right;
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 20px rgba(139,92,246,0.6);
 }
 
 /* Responsive */
-@media (max-width: 500px) {
+@media(max-width:768px){
   .worker-form-card {
-    padding: 1.2rem;
+    padding: 30px 24px;
   }
-  
   .worker-form-title {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
   }
 }

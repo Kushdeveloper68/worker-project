@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { useLocation, Navigate } from 'react-router-dom'
+// 🗑️
+import { useLocation, Navigate , Link} from 'react-router-dom'
 import '../style/dashboard.css'
 import { Navbar, Footer, Number, Workershow } from '../../components'
 import axios from 'axios'
@@ -60,13 +61,23 @@ function Dashboard () {
           </section>
 
           <section className='quick-actions'>
-            <button className='btn-primary'>Add Worker</button>
-            <button className='btn-secondary'>Check Worker</button>
+            <button className='btn-primary'><Link to="/add">Add Worker</Link></button>
+            <button className='btn-secondary'><Link to="/check">Check Worker</Link></button>
           </section>
 
           <section className='worker-table-section'>
             <h2 className='section-title'>Your Workers</h2>
             <div className='table-wrapper'>
+              <table className='worker-table'>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Date</th>
+          <th>Role</th>
+          <th>Salary</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
               {workers.workers && workers.workers.length > 0 ? (
                 workers.workers.map((worker, index) => (
                   <Workershow
@@ -75,11 +86,13 @@ function Dashboard () {
                     date={worker.date}
                     role={worker.role}
                     salary={worker.salary}
+                    id={worker._id}
                   />
                 ))
               ) : (
-                <p>No workers found. Please add some workers.</p>
+                <tbody><tr><td>No workers found. Please add some workers.</td></tr></tbody>
               )}
+              </table>
             </div>
           </section>
         </main>

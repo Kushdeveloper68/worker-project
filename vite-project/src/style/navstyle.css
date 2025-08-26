@@ -1,174 +1,140 @@
-/* <nav>
-        <div className="logo-div">
-            <img src="/vite.svg" alt="logo" className="logo" />
-        </div>
-        <button className="nav-menu-btn">|||</button>
-        <div className="nav-links">
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/about">About</a></li>
-                <li><a href="/contact">Contact</a></li>
-                <li><a href="/services">Services</a></li>
-            </ul>
-        </div>
-       </nav> */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-html, body {
-  width: 100%;
-  height: 100%;
-}
+/* 🌌 NAVBAR (Glassmorphism) */
 nav {
+  background: rgba(15, 23, 42, 0.7); /* dark with transparency */
+  backdrop-filter: blur(12px);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.2rem 3rem;
-  background: radial-gradient(circle at 20% 80%, #1e293b 0%, #0f172a 100%);
-  box-shadow: 0 2px 24px rgba(44,62,80,0.08);
-  position: relative;
-  z-index: 10;
-}
-.logo-div {
-  display: flex;
-  align-items: center;
-}
-.logo-div > img {
-  width: 56px;
-  height: 56px;
-  border-radius: 16px;
-  box-shadow: 0 2px 12px rgba(56,189,248,0.13);
-  background: rgba(99,102,241,0.08);
-  transition: transform 0.2s;
-}
-.logo-div > img:hover {
-  transform: scale(1.08) rotate(-3deg);
-}
-.nav-menu-btn {
-  display: none;
-  background: none;
-  border: none;
-  color: #38bdf8;
-  font-size: 2.2rem;
-  cursor: pointer;
-  margin-left: 1rem;
-  transition: color 0.2s;
-  z-index: 101;
-}
-.nav-menu-btn:hover {
-  color: #f472b6;
+  padding: 14px 40px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
 }
 
-/* Desktop nav links */
-.nav-links {
-  display: flex;
-  align-items: center;
+/* 🌟 LOGO */
+.logo-div .logo {
+  width: 50px;
+  height: auto;
+  filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.8));
+  transition: transform 0.4s ease, filter 0.4s ease;
 }
+.logo-div .logo:hover {
+  transform: scale(1.12) rotate(6deg);
+  filter: drop-shadow(0 0 18px rgba(34, 211, 238, 0.9));
+}
+
+/* 🔗 NAV LINKS */
 .nav-links ul {
   display: flex;
-  list-style: none;
-  gap: 2.2rem;
+  gap: 32px;
   margin: 0;
   padding: 0;
+  list-style: none;
 }
-.nav-links ul li a {
-  color: #f3f4f6;
-  text-decoration: none;
-  font-size: 1.18rem;
+.nav-links ul li a,
+.nav-links ul li button {
+  color: #f1f5f9;
+  font-size: 1rem;
   font-weight: 500;
-  letter-spacing: 0.5px;
-  padding: 8px 22px;
-  border-radius: 32px;
-  background: linear-gradient(90deg, #6366f1 0%, #38bdf8 100%);
-  box-shadow: 0 2px 12px rgba(56,189,248,0.09);
-  transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.2s;
-  position: relative;
-  overflow: hidden;
-}
-.nav-links ul li a:hover {
-  color: #fff;
-  background: linear-gradient(90deg, #f472b6 0%, #38bdf8 100%);
-  box-shadow: 0 6px 24px rgba(236,72,153,0.13);
-  transform: scale(1.08);
   text-decoration: none;
+  position: relative;
+  padding: 8px 10px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: color 0.4s ease, transform 0.3s ease;
 }
 
-/* Mobile styles */
-@media (max-width: 900px) {
-  nav {
-    padding: 1rem 1.2rem;
-  }
-  .nav-links ul {
-    gap: 1.2rem;
-  }
+/* 🌈 Neon gradient hover */
+.nav-links ul li a::before,
+.nav-links ul li button::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, #06b6d4, #8b5cf6, #ec4899);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s ease;
+}
+.nav-links ul li a:hover,
+.nav-links ul li button:hover {
+  color: #22d3ee;
+  transform: translateY(-2px);
+}
+.nav-links ul li a:hover::before,
+.nav-links ul li button:hover::before {
+  transform: scaleX(1);
+  transform-origin: left;
 }
 
+/* 🟣 Active link */
+.nav-links ul li .active {
+  color: #a78bfa;
+  font-weight: 600;
+  text-shadow: 0 0 8px rgba(167, 139, 250, 0.8);
+}
+.nav-links ul li .active::before {
+  transform: scaleX(1);
+  background: linear-gradient(90deg, #8b5cf6, #22d3ee, #ec4899);
+}
+
+/* 🍔 HAMBURGER MENU BUTTON */
+.nav-menu-btn {
+  display: none;
+  position: relative;
+  width: 28px;
+  height: 22px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  z-index: 1100;
+}
+.nav-menu-btn span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background: #f1f5f9;
+  border-radius: 2px;
+  margin: 5px 0;
+  transition: all 0.4s ease;
+}
+.nav-menu-btn.open span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 6px);
+}
+.nav-menu-btn.open span:nth-child(2) {
+  opacity: 0;
+}
+.nav-menu-btn.open span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -6px);
+}
+
+/* 📱 MOBILE MENU */
 @media (max-width: 768px) {
-  .nav-menu-btn {
-    display: block;
-  }
   .nav-links {
     position: fixed;
     top: 0;
-    right: 0;
-    width:100vw;
+    left:-35px;
+    transform: translate(400px , 0px);
+    width: 260px;
     height: 100vh;
-    background: radial-gradient(circle at 20% 80%, #1e293b 0%, #6366f1 100%);
-    box-shadow: -2px 0 24px rgba(44,62,80,0.13);
-    transform: translateX(450px);
-    transition: transform 0.4s cubic-bezier(.68,-0.55,.27,1.55);
-    z-index: 100;
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-    overflow-y: auto;
+    background: rgba(30, 41, 59, 0.95);
+    backdrop-filter: blur(12px);
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: right 0.5s ease;
+    box-shadow: -6px 0 20px rgba(0, 0, 0, 0.6);
   }
   .nav-links ul {
     flex-direction: column;
-    align-items: center;
-    gap: 2.2rem;
-    padding: 0;
-    margin: 0;
-    width: 100%;
+    gap: 28px;
   }
-  .nav-links ul li {
-    width: 100%;
-    text-align: center;
-  }
-  .nav-links ul li a {
-    font-size: 1.5rem;
-    width:140px;
+  .nav-menu-btn {
     display: block;
-    padding: 18px 0;
-    border-radius: 16px;
-    background: linear-gradient(90deg, #6366f1 0%, #38bdf8 100%);
-    margin: 0 30px;
-    box-shadow: 0 2px 12px rgba(56,189,248,0.09);
-  }
-  .nav-links ul li a:hover {
-    background: linear-gradient(90deg, #f472b6 0%, #38bdf8 100%);
-    color: #fff;
-    border-radius: 16px;
-    box-shadow: 0 6px 24px rgba(236,72,153,0.13);
-    transform: scale(1.04);
-  }
-}
-
-@media (max-width: 500px) {
-  .logo-div > img {
-    width: 38px;
-    height: 38px;
-  }
-  nav {
-    padding: 0.7rem 0.5rem;
-  }
-  .nav-links ul li a {
-    font-size: 1.2rem;
-    padding: 14px 0;
-    width:300px;
   }
 }

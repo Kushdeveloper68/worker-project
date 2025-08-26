@@ -223,12 +223,26 @@ async function feedback (req, res) {
     console.log('ERROR IS COMING FROM FEEDBACK CONTROL', error)
   }
 }
-
+async function deleteWorker(req, res) {
+  const { id } = req.params
+    console.log(req.params)
+  try {
+    await addmodel.findByIdAndDelete(id)
+    res.json({
+      success:true,
+       message: 'Worker deleted successfully!'
+       })
+  } catch (error) {
+    console.log('ERROR IS COMING FROM DELETE CONTROL', error)
+    res.json({ message: 'server error' })
+  } 
+}
 module.exports = {
   signup,
   add,
   login,
   check,
+  deleteWorker,
   feedback,
   sendOtp
 }

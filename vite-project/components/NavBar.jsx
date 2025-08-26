@@ -68,15 +68,6 @@ function Navbar() {
                 </>
             )
             break;
-            case "/add":
-            return (
-                <>
-                <li><NavLink to="/dashboard">Dashboard</NavLink></li>
-                <li><NavLink to="/add">Add worker</NavLink></li>
-                <li><NavLink to="/term">Terms & Conditions</NavLink></li>
-                </>
-            )
-            break;
         default:
             return (
                 <>
@@ -95,7 +86,14 @@ function Navbar() {
         <div className="logo-div">
             <img src="/vite.svg" alt="logo" className="logo" />
         </div>
-        <button className="nav-menu-btn" onClick={handleMenuClick} >|||</button>
+        <button 
+  className={`nav-menu-btn ${isOpen ? "open" : ""}`} 
+  onClick={handleMenuClick}
+>
+  <span></span>
+  <span></span>
+  <span></span>
+</button>
         <div className="nav-links">
             <ul>
                 {handleElement()}
