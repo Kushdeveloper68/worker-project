@@ -1,4 +1,4 @@
 # ignore node_module folder
 node_modules/
-#ignore node_module file 
+# ignore backend environment variables
 backend/.env

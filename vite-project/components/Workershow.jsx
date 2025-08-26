@@ -1,5 +1,6 @@
 import React, {useState ,useEffect} from 'react'
 import axios from 'axios'  
+import { deleteWorker } from '../src/services/api';
 function Workershow ({name , date , role , salary, id }) {
   const token = localStorage.getItem('token');
   const [isDeleted, setIsDeleted] = useState(false);
@@ -7,13 +8,8 @@ function Workershow ({name , date , role , salary, id }) {
   const handleDelete = async () => {
     try {
       console.log(id)
-      const response = await axios.delete(`http://localhost:5000/workers/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      }); 
+      const response = await deleteWorker(id, token);
       if (response.data.success) {
-        // Handle successful deletion (e.g., show a message, refresh the list)
         setIsDeleted(true);
       }
     } catch (error) {
@@ -22,8 +18,7 @@ function Workershow ({name , date , role , salary, id }) {
   };
   useEffect(() => {
     if (isDeleted) {
-      // Optionally, you can refresh the worker list or perform other actions
-      window.location.reload(); // Simple way to refresh the list
+      window.location.reload(); 
     }
   }, [isDeleted]);
   return (

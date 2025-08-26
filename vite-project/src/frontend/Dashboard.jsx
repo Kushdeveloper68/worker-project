@@ -4,6 +4,7 @@ import { useLocation, Navigate , Link} from 'react-router-dom'
 import '../style/dashboard.css'
 import { Navbar, Footer, Number, Workershow } from '../../components'
 import axios from 'axios'
+import { getWorkers } from '../services/api'
 function Dashboard () {
   const [workers, setWorkers] = useState({})
   const location = useLocation()
@@ -14,15 +15,11 @@ function Dashboard () {
   }
    useEffect( () => {
     const handleWorker = async () => {
-      const response = await axios.get("http://localhost:5000/", {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      })
+      const response = await getWorkers(token)
       setWorkers(response.data)
     }
     handleWorker()
-  }, [])
+  }, [token])
   return (
     <>
       <div className='dashboard'>

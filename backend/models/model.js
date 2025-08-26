@@ -45,24 +45,41 @@ const add = new schema({
 },{timestamps:true})
 
 const feedback = new schema({
-  name:{
+  feedback:{
     type:String,
     required:true
   } ,
-  contact:{
+  rating:{
     type:String,
     required:true
   },
-  message:{
+  email:{
     type:String,
     required:true
   }},{timestamps:true})
 
+  const report = new schema({
+    email:{
+      type:String,
+      required:true
+    },
+    issuetitle:{
+        type:String,
+        required:true
+    },
+    issueDescription:{
+      type:String,
+      required:true
+    }
+  },{timestamps:true})
+
 const feedbackmodel = mongoose.model("Feedback",feedback);
 const addmodel = mongoose.model("Worker", add);
 const signupmodel = mongoose.model("User", signup);
+const reportmodel = mongoose.model("Report", report);
 module.exports = {
     signupmodel,
     addmodel,
-    feedbackmodel
+    feedbackmodel,
+    reportmodel
 }

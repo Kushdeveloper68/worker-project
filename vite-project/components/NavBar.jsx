@@ -30,6 +30,8 @@ function Navbar() {
                 <li><NavLink to="/add">Add Worker</NavLink></li>
                 <li><NavLink to="/check">Check Worker</NavLink></li>
                 <li><NavLink to="/term">Terms & Conditions</NavLink></li>
+                <li><NavLink to="/report">Report Issue</NavLink></li>
+                <li><NavLink to="/feedback">Feedback</NavLink></li>
                 <li><button onClick={() => {
                     localStorage.removeItem('user');
                     localStorage.removeItem('token');
@@ -65,6 +67,8 @@ function Navbar() {
                 <li><NavLink to="/dashboard">Dashboard</NavLink></li>
                 <li><NavLink to="/check">Check worker</NavLink></li>
                 <li><NavLink to="/term">Terms & Conditions</NavLink></li>
+                <li><NavLink to="/report">Report Issue</NavLink></li>
+                <li><NavLink to="/feedback">Feedback</NavLink></li>
                 </>
             )
             break;

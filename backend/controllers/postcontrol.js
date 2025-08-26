@@ -1,4 +1,4 @@
-const { signupmodel, addmodel, feedbackmodel } = require('../models/model')
+const { signupmodel, addmodel, feedbackmodel , reportmodel } = require('../models/model')
 const bcrypt = require('bcryptjs')
 const nodemailer = require('nodemailer');
 const jwt = require('jsonwebtoken')
@@ -12,8 +12,8 @@ const otpStore = {};
 // Send OTP
 async function sendOtp(req, res) {
   const { email } = req.body;
-  if (!email) return res.json({ message: "Email required" });
   console.log(email)
+  if (!email) return res.json({ message: "Email required" });
   console.log(process.env.EMAIL, process.env.PASS)
   // Generate OTP
   const otp = Math.floor(100000 + Math.random() * 900000).toString();
@@ -208,19 +208,20 @@ async function add (req, res) {
   }
 }
 async function feedback (req, res) {
-  let { name, contact, message } = req.body
+  let { feedback, rating, userEmail } = req.body
   try {
-    if (!name || !contact || !message)
+    if (!feedback || !rating || !userEmail)
       return res.send('please enter form properly')
 
     await feedbackmodel.create({
-      name,
-      contact,
-      message
+      feedback,
+      rating,
+      email:userEmail
     })
-    res.send('feedback submitted 😊')
+    res.json({success:true , message:'Feedback submitted successfully!'})
   } catch (error) {
     console.log('ERROR IS COMING FROM FEEDBACK CONTROL', error)
+    res.json({success:false , message:'Feedback submitted failed!'})
   }
 }
 async function deleteWorker(req, res) {
@@ -237,6 +238,27 @@ async function deleteWorker(req, res) {
     res.json({ message: 'server error' })
   } 
 }
+//report controller
+async function reportIssue(req, res) {
+  const { issue,
+          description,
+          userEmail} = req.body
+  try {
+    if (!userEmail || !issue || !description) {
+      return res.json({ success:true,  message: 'please enter form properly' })
+    }
+
+    await reportmodel.create({
+      issueDescription: description,
+      email: userEmail,
+      issuetitle: issue
+    })
+    res.json({ success: true, message: 'Issue reported successfully!' })
+  } catch (error) {
+    console.log('ERROR IS COMING FROM REPORT CONTROL', error)
+    res.json({ success: false, message: 'Issue reporting failed!' })
+  }
+}
 module.exports = {
   signup,
   add,
@@ -244,5 +266,6 @@ module.exports = {
   check,
   deleteWorker,
   feedback,
-  sendOtp
+  sendOtp,
+  reportIssue
 }

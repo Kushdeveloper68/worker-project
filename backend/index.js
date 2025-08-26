@@ -20,7 +20,10 @@ mongodbConnection(process.env.mongoUrl || "mongodb://localhost:27017/workermanag
 app.use(bodyPraser.json())
 app.use(bodyPraser.urlencoded({ extended: true }))
 app.use(cookiesP())
-app.use(cors())
+app.use(cors({
+  origin: 'http://localhost:5173', // your frontend URL
+  credentials: true
+}));
 app.use(express.static(path.join(__dirname, './views')))
 
 app.set('view engine', 'ejs');

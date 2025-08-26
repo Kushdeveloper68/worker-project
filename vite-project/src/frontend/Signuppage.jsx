@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Navigate, useNavigate, useLocation, Link } from 'react-router-dom'
 import '../style/signuppage.css'
+import { signupOtp , signupUser } from './../services/api';
 function Signuppage () {
   const [data, setdata] = useState({})
   const [otp, setotp] = useState("")
@@ -23,9 +24,7 @@ useEffect(() => {
 
   const sendOtpHandler = async () => {
     try {
-      const response = await axios.post('http://localhost:5000/send-otp', {
-        email
-      })
+      const response = await signupOtp({ email })
       setdata(response.data)
     } catch (error) {
       console.error(error)
@@ -35,7 +34,7 @@ useEffect(() => {
   const submitHandler = async e => {
     e.preventDefault()
     try {
-      const response = await axios.post('http://localhost:5000/signup', {
+      const response = await signupUser({
         username,
         email,
         password,

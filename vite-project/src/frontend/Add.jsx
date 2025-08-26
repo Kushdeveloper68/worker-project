@@ -3,6 +3,7 @@ import { Navigate } from "react-router-dom";
 import axios from 'axios'
 import "../style/addpage.css";
 import { Navbar, Footer } from "../../components";
+import { addWorker } from "../services/api";
 
 function Add() {
   const [alart, setAlart] = useState("");
@@ -35,14 +36,10 @@ function Add() {
   // ✅ Submit all workers
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await axios.post('http://localhost:5000/add',{
-      workers, 
+    const response = await addWorker({
+      workers,
       email: user.email
-    },{
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    })
+    },  token)
     setData(response.data)
     setAlart(response.data.alert)
   };

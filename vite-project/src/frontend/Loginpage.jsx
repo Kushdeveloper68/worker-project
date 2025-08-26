@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import { Navigate, useNavigate, useLocation, Link } from 'react-router-dom'
 import '../style/loginpage.css'
+import { loginUser } from '../services/api'
 function Loginpage () {
   const user = JSON.parse(localStorage.getItem('user'))
   const token = localStorage.getItem('token')
@@ -19,11 +20,8 @@ function Loginpage () {
   const handleSubmit = async e => {
     e.preventDefault()
     try {
-      const response = await axios.post('http://localhost:5000/login', {
-        email,
-        password
-      })
-
+      const response = await loginUser({ email, password })
+      
       setData(response.data)
       if (response.data.success) {
         localStorage.setItem('user', JSON.stringify(response.data.user))
