@@ -1,0 +1,62 @@
+.
+├── vite-project
+│   ├── vite.config.js
+│   ├── src
+│   │   ├── style
+│   │   │   ├── signuppage.css
+│   │   │   ├── reportstyle.css
+│   │   │   ├── numberstyle.css
+│   │   │   ├── navstyle.css
+│   │   │   ├── loginpage.css
+│   │   │   ├── landingpage.css
+│   │   │   ├── footerstyle.css
+│   │   │   ├── feedbackstyle.css
+│   │   │   ├── dashboard.css
+│   │   │   └── addpage.css
+│   │   ├── services
+│   │   │   └── api.js
+│   │   ├── main.jsx
+│   │   ├── index.css
+│   │   ├── frontend
+│   │   │   ├── index.js
+│   │   │   ├── Signuppage.jsx
+│   │   │   ├── Report.jsx
+│   │   │   ├── Loginpage.jsx
+│   │   │   ├── Landingpage.jsx
+│   │   │   ├── Feedback.jsx
+│   │   │   ├── Dashboard.jsx
+│   │   │   └── Add.jsx
+│   │   ├── Layout.jsx
+│   │   └── App.jsx
+│   ├── package.json
+│   ├── package-lock.json
+│   ├── index.html
+│   ├── eslint.config.js
+│   ├── components
+│   │   ├── index.js
+│   │   ├── Workershow.jsx
+│   │   ├── Number.jsx
+│   │   ├── NavBar.jsx
+│   │   └── Footer.jsx
+│   └── README.md
+├── structure.txt
+├── package.json
+├── package-lock.json
+├── backend
+│   ├── routes
+│   │   ├── postroute.js
+│   │   └── getroute.js
+│   ├── models
+│   │   └── model.js
+│   ├── middleware
+│   │   └── tokenmiddleware.js
+│   ├── index.js
+│   ├── controllers
+│   │   ├── postcontrol.js
+│   │   └── getcontrol.js
+│   ├── connection.js
+│   └── authentication
+│       └── auth.js
+└── README.md
+
+13 directories, 47 files
