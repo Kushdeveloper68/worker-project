@@ -88,7 +88,7 @@ function Navbar() {
     <>
        <nav>
         <div className="logo-div">
-            <img src="/vite.svg" alt="logo" className="logo" />
+            <img src="https://static.vecteezy.com/system/resources/previews/010/982/526/original/builder-icon-logo-illustration-construction-worker-symbol-template-for-graphic-and-web-design-collection-free-vector.jpg" alt="logo" className="logo" />
         </div>
         <button 
   className={`nav-menu-btn ${isOpen ? "open" : ""}`} 
