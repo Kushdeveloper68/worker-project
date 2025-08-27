@@ -9,6 +9,10 @@ A **full-stack worker management system** built with **React (Vite)**, **Node.js
 - **Email Service**: Nodemailer (for OTP authentication & notifications)
 - **Other Tools**: CORS, dotenv, API handling
 
+## 🔗 Live Demo
+---
+👉 [Check Live Demo Here](https://github-explorer-git-main-kushdeveloper68s-projects.vercel.app/) 
+---
 ## 📂 Project Structure
 
 ```text
