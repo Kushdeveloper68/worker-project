@@ -21,7 +21,7 @@ app.use(bodyPraser.json())
 app.use(bodyPraser.urlencoded({ extended: true }))
 app.use(cookiesP())
 app.use(cors({
-  origin: 'http://localhost:5173', // your frontend URL
+  origin: 'https://worker-manager.onrender.com', // your frontend URL
   credentials: true
 }));
 app.use(express.static(path.join(__dirname, './views')))
