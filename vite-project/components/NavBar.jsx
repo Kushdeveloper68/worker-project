@@ -12,6 +12,7 @@ function Navbar() {
     } else {
         navLinks.style.translate = '350px 0px';
     }
+ }
  const handleElement = () => {
     switch (location.pathname) {
         case "/":
